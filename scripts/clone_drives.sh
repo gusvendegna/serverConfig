@@ -1,0 +1,1 @@
+rsync -av /mnt/bendo4/SHARE /mnt/ben10/SHARE
