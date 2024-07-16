@@ -1,4 +1,14 @@
 #!/bin/bash
+echo ""
+echo ""
+echo ""
+echo "  ／l、       "      
+echo "（ﾟ､ ｡ ７     "    
+echo "  l  ~ヽ    "   
+echo "  じしf_,)ノ"
+echo ""
+echo ""
+echo ""
 
 apt update
 apt install powertop -y
