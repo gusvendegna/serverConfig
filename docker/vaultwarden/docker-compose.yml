@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    environment:
+      - ROCKET_TLS={certs="/data/mjohnson.tail08f17.ts.net.crt",key="/data/mjohnson.tail08f17.ts.net.key"}
+    ports:
+      - 9069:80
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  home-assistant:
+    image: homeassistant/home-assistant
+    container_name: home-assistant
+    ports:
+      - 9007:8123
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/config
+    # definitely add some environment vars at some point LMAOOO
+    restart: unless-stopped
