@@ -15,6 +15,7 @@ apt install powertop -y
 apt install htop -y
 apt install rsync -y
 apt install samba -y
+apt install smartmontools -y
 
 # List current crontab entries
 crontab -l > mycron
