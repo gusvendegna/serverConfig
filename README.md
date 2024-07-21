@@ -10,6 +10,7 @@ This bash script performs the following actions:
     - `powertop`
     - `htop`
     - `rsync`
+    - `samba`
 
 2. Configures scheduled tasks using `cron`:
     - Appends two new cron jobs to the `crontab` file:
