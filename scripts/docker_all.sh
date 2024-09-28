@@ -17,7 +17,7 @@ else
 fi
 
 # Loop through directories and execute the command
-for dir in /home/gus/docker/* ; do
+for dir in /home/gus/serverConfig/docker/* ; do
   if [ -d "$dir" ]; then
     docker compose --file "$dir/docker-compose.yml" $command
   fi

@@ -9,10 +9,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/MST
-      - PASSWORD= #optional
-      - SUDO_PASSWORD= #optional
+      - PASSWORD=gus #optional
+      - SUDO_PASSWORD=gus #optional
       - DEFAULT_WORKSPACE=/config/workspace #optional
-      - GITHUB_TOKEN=
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
     volumes:
       - ./data:/home/coder
     ports:

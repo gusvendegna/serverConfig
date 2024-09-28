@@ -15,3 +15,11 @@ docker run --rm -v /mnt/hdd/music:/music spotdl/spotify-downloader download http
 # unstable women
 # https://open.spotify.com/playlist/7gnhk765qTbXoGkGHTN35u?si=629a84ff28fb4502
 docker run --rm -v /mnt/hdd/music:/music spotdl/spotify-downloader download https://open.spotify.com/playlist/7gnhk765qTbXoGkGHTN35u?si=629a84ff28fb4502
+
+# Yupee!
+# https://open.spotify.com/playlist/2qqjJ34mOAaWEIx8fNBDwB?si=5be4d88a693743c2
+docker run --rm -v /mnt/hdd/music:/music spotdl/spotify-downloader download https://open.spotify.com/playlist/2qqjJ34mOAaWEIx8fNBDwB?si=5be4d88a693743c2
+
+# en el garaje
+# https://open.spotify.com/playlist/6chwePfM44HJ9AYY3zlWuy?si=7fed17b23de1495d
+docker run --rm -v /mnt/hdd/music:/music spotdl/spotify-downloader download https://open.spotify.com/playlist/6chwePfM44HJ9AYY3zlWuy?si=7fed17b23de1495d

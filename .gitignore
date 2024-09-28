@@ -1,2 +1,5 @@
 */.env
 .env
+docker/*
+!docker-compose.yml
+!.env.example
