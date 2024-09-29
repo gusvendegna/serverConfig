@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Directory to zip
-DIRECTORY="/home/gus/docker"
+DIRECTORY="/home/gus/serverConfig/docker"
 
 # Destination directory for zip files
-ZIP_DESTINATION="/mnt/hdd/backups/docker-volumes"
+ZIP_DESTINATION="/mnt/bendo4/SHARE/backups/docker-volumes"
 
 # Create destination directory if it doesn't exist
 mkdir -p $ZIP_DESTINATION

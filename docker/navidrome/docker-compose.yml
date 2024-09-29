@@ -13,4 +13,4 @@ services:
       ND_BASEURL: ""
     volumes:
       - ./data:/data
-      - /mnt/hdd/music:/music:ro
+      - /mnt/bendo4/SHARE/media/music:/music:ro

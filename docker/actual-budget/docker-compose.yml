@@ -8,8 +8,8 @@ services:
       - '9008:5006'
     environment:
       # Uncomment any of the lines below to set configuration options.
-      - ACTUAL_HTTPS_KEY=/data/mjohnson.tail08f17.ts.net.key
-      - ACTUAL_HTTPS_CERT=/data/mjohnson.tail08f17.ts.net.crt
+      - ACTUAL_HTTPS_KEY=/data/ljohnson.tail08f17.ts.net.key
+      - ACTUAL_HTTPS_CERT=/data/ljohnson.tail08f17.ts.net.crt
       # - ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB=20
       # - ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB=50
       # - ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB=20

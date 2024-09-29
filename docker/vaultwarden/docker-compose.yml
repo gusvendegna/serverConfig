@@ -3,7 +3,7 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     environment:
-      - ROCKET_TLS={certs="/data/mjohnson.tail08f17.ts.net.crt",key="/data/mjohnson.tail08f17.ts.net.key"}
+      - ROCKET_TLS={certs="/data/ljohnson.tail08f17.ts.net.crt",key="/data/ljohnson.tail08f17.ts.net.key"}
     ports:
       - 9069:80
     volumes:
