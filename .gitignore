@@ -5,5 +5,5 @@
 docker/*
 
 # Except for these specific files
-!docker/docker-compose.yml
-!docker/.env.example
+!docker/**/docker-compose.yml
+!docker/**/.env.example
