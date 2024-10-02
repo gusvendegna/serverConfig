@@ -1,9 +1,10 @@
 # Ignore all .env files
 *.env
 
-# Ignore everything in the docker directory
-docker/*
+# Ignore everything in the docker directory AND its subdirectories
+docker/*/*
 
-# Except for these specific files
+
+# Except for these specific files in the subdirectories
 !docker/**/docker-compose.yml
 !docker/**/.env.example

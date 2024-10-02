@@ -1,0 +1,12 @@
+services:
+  tileD:
+    container_name: tileD
+    image: gusvendegna/tiled:latest
+    ports:
+      - 9080:5000
+    env_file:
+      - .env
+    volumes:
+      - ./data/tileD.db:/python_docker/tileD.db
+    restart: unless-stopped
+    
