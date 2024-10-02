@@ -16,6 +16,9 @@ apt install htop -y
 apt install rsync -y
 apt install samba -y
 apt install smartmontools -y
+apt install zip -y
+apt install unzip -y
+apt install hdparm -y
 
 # List current crontab entries
 crontab -l > mycron
@@ -23,6 +26,7 @@ crontab -l > mycron
 # Append new cron job to the list
 echo "@reboot powertop --auto-tune" >> mycron
 echo "0 0 * * * /home/gus/serverConfig/backup_docker_volumes.sh" >> mycron
+echo "1 0 * * * /home/gus/serverConfig/backup_drive.sh" >> mycron
 
 # Install the new crontab
 crontab mycron

@@ -4,4 +4,4 @@
 echo "" >> /home/gus/logs/backup_drive.log
 echo "==============================================" >> /home/gus/logs/backup_drive.log
 echo $(date) >> /home/gus/logs/backup_drive.log
-sudo rsync -avb --suffix .$(date +%Y%m%d) /mnt/hdd/ /mnt/external >> /home/gus/logs/backup_drive.log
+sudo rsync -avb --suffix .$(date +%Y%m%d) /mnt/bendo4/SHARE/ /mnt/ben10 >> /home/gus/logs/backup_drive.log
