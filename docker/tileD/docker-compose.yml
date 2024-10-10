@@ -9,4 +9,10 @@ services:
     volumes:
       - ./data/tileD.db:/python_docker/tileD.db
     restart: unless-stopped
+    healthcheck:
+      test: curl --fail http://localhost:5000/ || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     

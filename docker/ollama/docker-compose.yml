@@ -1,0 +1,28 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    volumes:
+      - ./ollama:/root/.ollama
+    ports:
+      - 11434:11434
+    labels:
+      - homepage.group=Services
+      - homepage.name=Ollama
+      - homepage.icon=https://avatars.githubusercontent.com/u/147204191?s=280&v=
+      - homepage.description=moove 
+      - homepage.weight=10000
+      - homepage.showStats=true
+  webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: webui
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - ./data:/app/backend/data
+    depends_on:
+      - ollama

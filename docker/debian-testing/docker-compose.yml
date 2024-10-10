@@ -1,0 +1,9 @@
+services:
+  debian-testing:
+    build: .
+    image: debian-testing
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    container_name: debian-testing
+    command: sleep infinity
