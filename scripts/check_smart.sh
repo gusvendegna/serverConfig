@@ -20,6 +20,7 @@ for drive in $drives; do
         echo "$device: SMART status PASSED"
     else
         echo "$device: SMART status FAILED"
+        exit 1
     fi
     echo "--------------------------------------"
 done
