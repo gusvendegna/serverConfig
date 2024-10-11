@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  frigate:
+    container_name: frigate
+    restart: unless-stopped
+    image: ghcr.io/blakeblackshear/frigate:stable
+    ports:
+      - 8971:8971
+    volumes:
+      - ./config:/config
+networks: {}
