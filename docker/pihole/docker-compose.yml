@@ -1,0 +1,30 @@
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      #- "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      - "8880:8880/tcp" # web interface
+    environment:
+      - TZ='America/Denver'
+      - WEB_PORT=8880
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    restart: unless-stopped
+    labels:
+      - homepage.group=Services
+      - homepage.name=PiHole
+      - homepage.icon=https://camo.githubusercontent.com/60c6245b20eb10a0ea13e2975ad158570a4e0970b907ac65940ad4268396a969/68747470733a2f2f70692d686f6c652e6769746875622e696f2f67726170686963732f566f727465782f566f727465785f776974685f746578742e706e67
+      - homepage.href=http://ljohnson.tail08f17.ts.net:8880
+      - homepage.description=you did what in your hole?
+      - homepage.weight=97
