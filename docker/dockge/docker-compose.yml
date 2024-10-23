@@ -25,6 +25,6 @@ services:
       - homepage.group=Services
       - homepage.name=Dockge
       - homepage.icon=https://dockge.kuma.pet/icon.svg
-      - homepage.href=http://ljohnson:5001
+      - homepage.href=http://mjohnson:5001
       - homepage.description=Monitor docker with docker
       - homepage.weight=99

@@ -14,7 +14,7 @@ drives=$(lsblk -dn -o NAME)
 for drive in $drives; do
     device="/dev/$drive"
     echo "Checking SMART status of $device"
-    result=$(sudo smartctl -H $device | grep "SMART overall-health self-assessment test result")
+    result=$(sudo smartctl -d scsi -H $device | grep "SMART overall-health self-assessment test result")
 
     if [[ "$result" == *"PASSED"* ]]; then
         echo "$device: SMART status PASSED"
