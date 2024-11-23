@@ -1,0 +1,12 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    restart: always
+    ports:
+      - "9010:80"
+    volumes:
+      - ./config:/config
+      - ./metadata:/metadata
+      - /mnt/bendo4/SHARE/media/audiobooks:/audiobooks
+      - /mnt/bendo4/SHARE/media/podcasts:/podcasts

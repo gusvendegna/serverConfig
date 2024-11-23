@@ -21,10 +21,4 @@ services:
     environment:
       # Tell Dockge where is your stacks directory
       - DOCKGE_STACKS_DIR=/opt/stacks
-    labels:
-      - homepage.group=Services
-      - homepage.name=Dockge
-      - homepage.icon=https://dockge.kuma.pet/icon.svg
-      - homepage.href=http://ljohnson:5001
-      - homepage.description=Monitor docker with docker
-      - homepage.weight=99
+    
