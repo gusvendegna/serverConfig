@@ -8,6 +8,8 @@ services:
     volumes:
       - ./config:/config
       - /mnt/hdd/frigate:/media
+    env_file:
+      - .env
     shm_size: 2gb
     privileged: true
 
