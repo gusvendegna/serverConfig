@@ -4,8 +4,8 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - './data:/data'
-      - './:/config'
+      - '/mnt/bendo4/SHARE/torrents:/data'
+      - './config:/config'
     logging:
       driver: json-file
       options:
