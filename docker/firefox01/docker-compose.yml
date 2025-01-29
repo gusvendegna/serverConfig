@@ -1,0 +1,28 @@
+services:
+  ts_firefox:
+    image: tailscale/tailscale:latest
+    container_name: ts_firefox
+    hostname: ts_firefox
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - ./ts_data:/var/lib/tailscale
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+
+  firefox01:
+    image: jlesage/firefox
+    container_name: firefox01
+    restart: unless-stopped
+    volumes:
+      - ./firefox01:/config:rw
+    environment:
+      - WEB_LISTENING_PORT=5801
+      - DISPLAY_WIDTH=1280
+      - DISPLAY_HEIGHT=720
+    network_mode: service:ts_firefox
+    depends_on:
+      - ts_firefox
