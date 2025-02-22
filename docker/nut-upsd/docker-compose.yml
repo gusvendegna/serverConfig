@@ -8,6 +8,7 @@ services:
       - DRIVER=usbhid-ups
       - API_USER=upsmon #default user, change if desired
       - API_PASSWORD=supersecretpassword1234 # your password, change to your own
+      - NAME=upsmon
     devices:
       # Only pinning to the bus as the device number can change
       - /dev/bus/usb/001:/dev/bus/usb/001
