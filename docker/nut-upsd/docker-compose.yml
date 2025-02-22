@@ -1,0 +1,24 @@
+services:
+  nut-upsd:
+    image: instantlinux/nut-upsd
+    container_name: nut-upsd
+    environment:
+      - TZ=America/Denver
+      # Driver found with this tool https://networkupstools.org/stable-hcl.html
+      - DRIVER=usbhid-ups
+      - API_USER=upsmon #default user, change if desired
+      - API_PASSWORD=supersecretpassword1234 # your password, change to your own
+    devices:
+      # Only pinning to the bus as the device number can change
+      - /dev/bus/usb/001:/dev/bus/usb/001
+
+  peanut:
+    image: brandawg93/peanut:latest
+    container_name: PeaNUT
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    volumes:
+      - ./config:/config
+    environment:
+      - WEB_PORT=8080
