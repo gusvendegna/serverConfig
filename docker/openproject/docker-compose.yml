@@ -1,0 +1,16 @@
+services:
+  openproject:
+    image: openproject/openproject:15
+    container_name: openproject
+    restart: unless-stopped
+    ports:
+      - "9823:9823"
+    environment:
+      OPENPROJECT_HOST__NAME: ljohnson.tail08f17.ts.net:9823
+      OPENPROJECT_SECRET_KEY_BASE: 4hEWLPmQX3xg33SVnnu8xjrLxB4QQwSO
+      PORT: "9823"
+      OPENPROJECT_HTTPS: "false"
+    volumes:
+      - ./pgdata:/var/openproject/pgdata
+      - ./assets:/var/openproject/assets
+

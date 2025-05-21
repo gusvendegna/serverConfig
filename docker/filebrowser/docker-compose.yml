@@ -5,7 +5,7 @@ services:
     ports:
       - 9070:80
     volumes:
-      - /mnt/hdd:/srv
+      - /mnt/bendo4/SHARE:/srv
       - ./filebrowser.db:/database/filebrowser.db
       - ./filebrowser.json:/.filebrowser.json
     restart: unless-stopped
