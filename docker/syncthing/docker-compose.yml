@@ -10,6 +10,7 @@ services:
     volumes:
       - ./config:/config
       - /mnt/bendo4/SHARE/media/roms/saves:/saves
+      - /mnt/bendo4/SHARE/media/retroarch:/retroarch
     ports:
       - 8384:8384
       - 22000:22000/tcp
