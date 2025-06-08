@@ -1,10 +1,3 @@
-version: "3"
-
-volumes:
-  mysql_data:
-  romm_resources:
-  romm_redis_data:
-
 services:
   romm:
     image: rommapp/romm:latest
@@ -21,11 +14,12 @@ services:
       - SCREENSCRAPER_USER=${SCREENSCRAPER_USER}
       - SCREENSCRAPER_PASSWORD=${SCREENSCRAPER_PASSWORD}
       - STEAMGRIDDB_API_KEY=${STEAMGRIDDB_API_KEY}
+      - RETROACHIEVEMENTS_API_KEY=${RETROACHIEVEMENTS_API_KEY}
     volumes:
-      - ./resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - ./resources:/romm/resources/roms # Resources fetched from IGDB (covers, screenshots, etc.)
       - ./redis_data:/redis-data # Cached data for background tasks
-      - /path/to/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
-      - /path/to/assets:/romm/assets # Uploaded saves, states, etc.
+      - /mnt/bendo4/SHARE/media/roms:/romm/library/roms # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+      - ./temp_assets:/romm/assets # Uploaded saves, states, etc.
       - ./config:/romm/config # Path where config.yml is stored
     ports:
       - 8068:8080
