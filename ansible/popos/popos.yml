@@ -33,3 +33,25 @@
       command: ssh-keygen -t rsa -b 4096 -f /home/{{ user_name }}/.ssh/id_rsa -N ""
       args:
         creates: /home/{{ user_name }}/.ssh/id_rsa
+
+    - name: Install dependencies for NVM
+      apt:
+        name:
+          - curl
+        state: present
+
+    - name: Install Node Version Manager (NVM)
+      become: yes
+      become_user: "{{ user_name }}"
+      environment:
+        HOME: "/home/{{ user_name }}"
+      shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+      args:
+        chdir: "/home/{{ user_name }}"
+        creates: "/home/{{ user_name }}/.nvm/nvm.sh"
+
+    - name: Add NVM initialization to .bashrc
+      lineinfile:
+        path: "/home/{{ user_name }}/.bashrc"
+        line: 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+        create: yes
