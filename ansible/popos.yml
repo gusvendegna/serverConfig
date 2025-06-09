@@ -1,0 +1,35 @@
+---
+- name: Set up Pop!_OS desktop
+  hosts: localhost
+  become: yes
+  vars:
+    user_name: "gus"
+  tasks:
+    - name: Update package lists
+      apt:
+        update_cache: yes
+
+    - name: Download VS Code .deb package
+      get_url:
+        url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+        dest: "/tmp/code.deb"
+
+    - name: Install VS Code
+      apt:
+        deb: "/tmp/code.deb"
+
+    - name: Install Starship
+      shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
+      args:
+        creates: /usr/local/bin/starship
+
+    - name: Add Starship init to .bashrc
+      lineinfile:
+        path: "/home/{{ user_name }}/.bashrc"
+        line: 'eval "$(starship init bash)"'
+        create: yes
+
+    - name: Generate SSH key
+      command: ssh-keygen -t rsa -b 4096 -f /home/{{ user_name }}/.ssh/id_rsa -N ""
+      args:
+        creates: /home/{{ user_name }}/.ssh/id_rsa
