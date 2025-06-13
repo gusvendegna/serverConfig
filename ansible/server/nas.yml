@@ -1,0 +1,47 @@
+---
+- name: Setup Samba, hd-idle, and SSH key on Debian
+  hosts: localhost
+  become: true
+  vars:
+    user_name: "gus"
+  tasks:
+
+    - name: Install required packages
+      apt:
+        name:
+          - samba
+          - curl
+        state: present
+        update_cache: yes
+
+    - name: Download hd-idle package
+      get_url:
+        url: "https://github.com/adelolmo/hd-idle/releases/download/v1.21/hd-idle_1.21_amd64.deb"
+        dest: "/tmp/hd-idle_1.21_amd64.deb"
+
+    - name: Install hd-idle from downloaded package
+      apt:
+        deb: "/tmp/hd-idle_1.21_amd64.deb"
+
+    - name: Configure hd-idle settings
+      lineinfile:
+        path: "/etc/default/hd-idle"
+        regexp: "^START_HD_IDLE="
+        line: "START_HD_IDLE=true"
+        create: yes
+
+    - name: Ensure hd-idle uses /proc/diskstats
+      file:
+        path: "/proc/diskstats"
+        state: file
+
+    - name: Enable and start hd-idle service
+      systemd:
+        name: hd-idle
+        enabled: yes
+        state: started
+
+    - name: Generate SSH key
+      command: ssh-keygen -t rsa -b 4096 -f /home/{{ user_name }}/.ssh/id_rsa -N ""
+      args:
+        creates: /home/{{ user_name }}/.ssh/id_rsa

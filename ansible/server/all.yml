@@ -1,0 +1,28 @@
+---
+- name: Configure server with essential tools and cron jobs
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update package lists
+      apt:
+        update_cache: yes
+
+    - name: Install necessary packages
+      apt:
+        name:
+          - powertop
+          - htop
+          - rsync
+          - samba
+          - smartmontools
+          - zip
+          - unzip
+          - hdparm
+        state: present
+
+    - name: Configure powertop auto-tune at reboot
+      cron:
+        name: "Powertop Auto-tune"
+        special_time: reboot
+        job: "powertop --auto-tune"
