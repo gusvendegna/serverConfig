@@ -1,0 +1,10 @@
+services:
+  webcam:
+    container_name: webcam
+    image: romankspb/webcam
+    privileged: true
+    volumes:
+      - /dev/video0:/dev/video0
+    ports:
+      - 8084:8080
+      - 8082:8082

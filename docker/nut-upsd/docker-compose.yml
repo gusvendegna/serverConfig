@@ -12,7 +12,7 @@ services:
     devices:
       # Only pinning to the bus as the device number can change
       - /dev/bus/usb/001:/dev/bus/usb/001
-
+    restart: always
   peanut:
     image: brandawg93/peanut:latest
     container_name: PeaNUT
@@ -23,3 +23,10 @@ services:
       - ./config:/config
     environment:
       - WEB_PORT=8080
+      - NUT_HOST=nut-upsd
+      - NUT_PORT=3493
+      - NUT_USER=upsmon
+      - NUT_PASSWORD=supersecretpassword1234
+      - NUT_UPS_NAME=upsmon
+      - NUT_UPS_TYPE=usbhid-ups
+      - NUT_UPS_DESCRIPTION=MyUPS
