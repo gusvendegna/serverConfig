@@ -16,3 +16,5 @@ services:
     # expose port and/or use serving via traefik
     ports:
       - 9002:8080
+    labels:
+      tsdproxy.enable: "true"

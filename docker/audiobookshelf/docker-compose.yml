@@ -10,3 +10,5 @@ services:
       - ./metadata:/metadata
       - /mnt/bendo4/SHARE/media/audiobooks:/audiobooks
       - /mnt/bendo4/SHARE/media/podcasts:/podcasts
+    labels:
+      tsdproxy.enable: "true"

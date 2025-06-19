@@ -9,3 +9,5 @@ services:
       - ./filebrowser.db:/database/filebrowser.db
       - ./filebrowser.json:/.filebrowser.json
     restart: unless-stopped
+    labels:
+      tsdproxy.enable: "true"

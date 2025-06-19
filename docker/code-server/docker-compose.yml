@@ -3,8 +3,6 @@ services:
   code-server:
     image: codercom/code-server:latest
     container_name: code-server
-    command:
-      --cert
     environment:
       - PUID=1000
       - PGID=1000
@@ -18,3 +16,6 @@ services:
     ports:
       - 8082:8080
     restart: unless-stopped
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.container_port: 8443

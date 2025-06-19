@@ -1,6 +1,6 @@
 services:
   scrutiny:
-    container_name: scrutiny
+    container_name: scrutiny-mj
     image: ghcr.io/analogj/scrutiny:master-omnibus
     cap_add:
       - SYS_RAWIO
@@ -17,3 +17,5 @@ services:
       #- /dev/sdb:/dev/sdb
       - /dev/nvme0n1:/dev/nvme0n1
     restart: unless-stopped
+    labels:
+      tsdproxy.enable: "true"

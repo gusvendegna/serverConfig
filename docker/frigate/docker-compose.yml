@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     image: ghcr.io/blakeblackshear/frigate:stable
     ports:
-      - 8971:8971
+      - 8971:8971 # no proxy
     volumes:
       - ./config:/config
       - /mnt/hdd/frigate:/media
@@ -12,4 +12,6 @@ services:
       - .env
     shm_size: 2gb
     privileged: true
-
+    labels:
+      tsdproxy.enable: "true"
+      tdsproxy.container_port: 8971

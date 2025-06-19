@@ -30,3 +30,5 @@ services:
       - NUT_UPS_NAME=upsmon
       - NUT_UPS_TYPE=usbhid-ups
       - NUT_UPS_DESCRIPTION=MyUPS
+    labels:
+      tsdproxy.enable: "true"

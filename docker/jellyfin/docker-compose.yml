@@ -16,3 +16,5 @@ services:
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
     extra_hosts:
       - 'host.docker.internal:host-gateway'
+    labels:
+      tsdproxy.enable: "true"
