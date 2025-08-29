@@ -4,7 +4,7 @@ services:
     container_name: ollama
     restart: unless-stopped
     volumes:
-      - ./ollama:/root/.ollama
+      - ~/ollama:/root/.ollama
     ports:
       - 11434:11434
     
@@ -13,10 +13,12 @@ services:
     container_name: webui
     restart: unless-stopped
     ports:
-      - 8080:8080
+      - 8083:8080
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
     volumes:
       - ./data:/app/backend/data
     depends_on:
       - ollama
+    labels:
+      tsdproxy.enable: "true"

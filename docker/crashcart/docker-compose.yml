@@ -1,0 +1,12 @@
+services:
+  crashcart:
+    image: ghcr.io/gusvendegna/crashcart:latest
+    container_name: crashcart
+    ports:
+      - "8080:8080"
+    devices:
+      - "/dev/video0:/dev/video0"
+    environment:
+      - RESOLUTION=1280x720
+      - FRAMERATE=30
+    restart: unless-stopped
