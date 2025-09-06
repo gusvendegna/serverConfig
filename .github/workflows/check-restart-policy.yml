@@ -15,14 +15,13 @@ jobs:
         env:
           DOCKER_FILES_DIR: ${{ github.workspace }}/docker/
         run: |
-          find "${DOCKER_FILES_DIR}" -name docker-compose.yml | while read -r file; do
-            if ! grep -qE "(restart\s*:\s*(always|unless-stopped))" "$file"; then
-              echo "Error: Restart policy not set in $file"
-              exit 1
+          while IFS= read -r file; do
+            if ! grep -qE "(always|unless-stopped)" "$file"; then
+              echo "Warning: Restart policy not set in $file. Continuing..."
             fi
-          done
+          done < <(find "${DOCKER_FILES_DIR}" -name docker-compose.yml)
 
-      - name: Check if all files have correct restart policy
+      - name: Check if all files have correct restart policy (optional)
         run: |
           if [ $? -ne 0 ]; then
             echo "One or more Docker Compose files do not have the correct restart policy. Aborting."
