@@ -1,0 +1,11 @@
+services:
+  tasktrove:
+    image: ghcr.io/dohsimpson/tasktrove:latest
+    container_name: tasktrove
+    restart: unless-stopped
+    ports:
+      - "3089:3000"
+    volumes:
+      - ./data:/app/data
+    labels:
+      tsdproxy.enable: "true"
