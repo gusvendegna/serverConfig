@@ -9,3 +9,4 @@ services:
       - ./data:/app/data
     labels:
       tsdproxy.enable: "true"
+    
