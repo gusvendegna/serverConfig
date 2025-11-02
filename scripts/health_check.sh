@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HOSTNAME=$(hostname)
-URL="https://hc-ping.com/${PING_KEY}/${HOSTNAME}-up"
+URL="https://hc-ping.com/${PING_KEY}/${HOSTNAME}"
 
 while true; do
   curl -fsS -m 10 "$URL" > /dev/null
