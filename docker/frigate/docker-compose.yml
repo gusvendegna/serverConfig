@@ -15,3 +15,5 @@ services:
     labels:
       tsdproxy.enable: "true"
       tdsproxy.container_port: 8971
+    devices:
+      - /dev/dri/renderD128

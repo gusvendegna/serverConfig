@@ -3,7 +3,7 @@ services:
     image: ghcr.io/gusvendegna/crashcart:latest
     container_name: crashcart
     ports:
-      - "8080:8080"
+      - "8880:8080"
     devices:
       - "/dev/video0:/dev/video0"
     environment:
