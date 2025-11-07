@@ -19,18 +19,18 @@
       ansible.builtin.set_fact:
         latest_backup: "{{ backups.files | sort(attribute='path') | last }}"
 
-    #- name: Copy latest backup to /
-    #  ansible.builtin.copy:
-    #    src: "{{ latest_backup.path }}"
-    #    dest: "/"
-    #    remote_src: yes
+    - name: Copy latest backup to /
+      ansible.builtin.copy:
+        src: "{{ latest_backup.path }}"
+        dest: "/"
+        remote_src: yes
 
-    #- name: Unzip latest backup to /
-    #  ansible.builtin.unarchive:
-    #    src: "/{{ latest_backup.path | basename }}"
-    #    dest: "/"
-    #    remote_src: yes
-    #    extra_opts: [ "-o" ]
+    - name: Unzip latest backup to /
+      ansible.builtin.unarchive:
+        src: "/{{ latest_backup.path | basename }}"
+        dest: "/"
+        remote_src: yes
+        extra_opts: [ "-o" ]
 
     - name: Start Frigate Containers
       community.docker.docker_compose_v2:
