@@ -1,6 +1,6 @@
 ---
 - name: Install and configure Docker on Debian
-  hosts: all
+  hosts: localhost
   become: yes
   vars:
     user_name: "gus"
@@ -50,11 +50,3 @@
         groups: docker
         append: yes
 
-    - name: Verify Docker installation
-      command: docker run hello-world
-      register: docker_test
-      ignore_errors: yes
-
-    - name: Display Docker test output
-      debug:
-        msg: "{{ docker_test.stdout }}"

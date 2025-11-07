@@ -1,0 +1,50 @@
+- name: Add CIFS network share securely to fstab and mount
+  hosts: localhost
+  become: true
+
+  vars:
+    smb_user: "gus"
+    smb_password: "YOUR_PASSWORD_HERE"  # <-- define securely or via Vault
+    mount_point: "/mnt/bendo4/SHARE"
+    smb_share: "//10.0.0.193/share"
+    cred_file: "/root/.smbcredentials"
+
+  tasks:
+    - name: Install CIFS utilities
+      ansible.builtin.package:
+        name: cifs-utils
+        state: present
+
+    - name: Ensure mount directory exists
+      ansible.builtin.file:
+        path: "{{ mount_point }}"
+        state: directory
+        owner: "{{ smb_user }}"
+        group: "{{ smb_user }}"
+        mode: '0755'
+
+    - name: Create SMB credentials file
+      ansible.builtin.copy:
+        dest: "{{ cred_file }}"
+        content: |
+          username={{ smb_user }}
+          password={{ smb_password }}
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Add CIFS share to /etc/fstab securely
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        regexp: '^{{ smb_share | regex_escape() }}\s'
+        line: '{{ smb_share }} {{ mount_point }} cifs credentials={{ cred_file }},uid=1000,gid=1000,_netdev,nofail,x-systemd.device-timeout=20,x-systemd.automount 0 2'
+        state: present
+        backup: yes
+
+    - name: Mount the CIFS share immediately
+      ansible.posix.mount:
+        path: "{{ mount_point }}"
+        src: "{{ smb_share }}"
+        fstype: cifs
+        opts: "credentials={{ cred_file }},uid=1000,gid=1000,_netdev,nofail,x-systemd.device-timeout=20,x-systemd.automount"
+        state: mounted

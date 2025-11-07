@@ -1,7 +1,7 @@
 ---
 - name: Configure server with essential tools and cron jobs
-  hosts: all
-  become: yes
+  hosts: localhost
+  become: true
 
   tasks:
     - name: Update package lists

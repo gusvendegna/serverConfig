@@ -1,0 +1,38 @@
+---
+- import_playbook: all.yml
+- import_playbook: docker_debian.yml
+- import_playbook: mount_nas.yml
+
+# Now you can have your local play with tasks
+- name: Handle latest docker volume backup
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Find all docker volume backups
+      ansible.builtin.find:
+        paths: /mnt/bendo4/SHARE/backups/docker-volumes/
+        patterns: "docker-volumes_*.zip"
+        file_type: file
+      register: backups
+
+    - name: Determine latest backup
+      ansible.builtin.set_fact:
+        latest_backup: "{{ backups.files | sort(attribute='path') | last }}"
+
+    #- name: Copy latest backup to /
+    #  ansible.builtin.copy:
+    #    src: "{{ latest_backup.path }}"
+    #    dest: "/"
+    #    remote_src: yes
+
+    #- name: Unzip latest backup to /
+    #  ansible.builtin.unarchive:
+    #    src: "/{{ latest_backup.path | basename }}"
+    #    dest: "/"
+    #    remote_src: yes
+    #    extra_opts: [ "-o" ]
+
+    - name: Start Frigate Containers
+      community.docker.docker_compose_v2:
+        project_src: /home/gus/serverConfig/docker/frigate
+        state: present
